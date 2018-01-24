@@ -1,0 +1,88 @@
+buildscript {
+	ext {
+		springBootVersion = '1.4.0.M3'
+		hibernateVersion = '5.1.0.Final'
+		queryDSLVersion = '4.1.2'
+	}
+	repositories {
+		mavenCentral()
+		maven {
+			url 'https://repo.spring.io/libs-snapshot'
+		}
+		maven {
+			url "https://plugins.gradle.org/m2/"
+		}
+	}
+	dependencies {
+		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+		classpath "io.spring.gradle:dependency-management-plugin:0.6.0.RELEASE"
+	}
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse-wtp'
+apply plugin: 'spring-boot'
+apply plugin: 'war'
+apply plugin: "io.spring.dependency-management"
+
+version = '0.0.1'
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+war {
+	baseName = 'ecogeo'
+	version = ''
+}
+
+repositories {
+	mavenCentral()
+	maven { url 'https://repo.spring.io/libs-snapshot' }
+	maven { url 'http://sndyuk.github.com/maven' }
+}
+
+bootRun {
+	addResources = true
+}
+
+configurations {
+	providedRuntime
+}
+
+dependencies {
+	compile("org.springframework.boot:spring-boot-starter-data-jpa:$springBootVersion")
+	compile("org.springframework.boot:spring-boot-starter-data-rest:$springBootVersion")
+	compile("org.springframework.boot:spring-boot-starter-web:$springBootVersion")
+	compile("org.springframework.boot:spring-boot-devtools:$springBootVersion")
+
+	//database
+	runtime("mysql:mysql-connector-java:5.1.41")
+	compile("org.hibernate:hibernate-core:$hibernateVersion")
+	compile("org.hibernate:hibernate-entitymanager:$hibernateVersion")
+	compile("org.hibernate:hibernate-java8:$hibernateVersion")
+	compile("com.querydsl:querydsl-jpa:${queryDSLVersion}")
+	compile("com.querydsl:querydsl-apt:${queryDSLVersion}")
+	compile("com.querydsl:querydsl-sql:${queryDSLVersion}")
+
+	//tomcat
+	compile("javax.servlet:jstl:1.2")
+	compile("org.sitemesh:sitemesh:3.0.1")
+	compile("org.apache.tomcat.embed:tomcat-embed-jasper")
+
+	compileOnly('org.projectlombok:lombok')
+	testCompile('org.springframework.boot:spring-boot-starter-test')
+}
+
+task wrapper(type: Wrapper) {
+	gradleVersion = '3.0'
+}
+
+sourceSets {
+	main {
+		java {
+			srcDir 'src/main/java'
+		}
+		resources {
+			exclude '**/node_modules/**'
+		}
+	}
+}
