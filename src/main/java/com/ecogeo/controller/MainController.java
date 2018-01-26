@@ -59,7 +59,19 @@ public class MainController extends BaseController {
 
   @GetMapping("/index")
   public String viewIndex(HttpServletRequest request, Model model) {
+    model.addAttribute("location", "index");
     return "/index";
   }
 
+  @GetMapping("/chart")
+  public String viewChart(HttpServletRequest request, Model model) {
+    model.addAttribute("location", "chart");
+    return "/chart";
+  }
+
+  @GetMapping("/form")
+  public String viewForm(HttpServletRequest request, Model model) {
+    model.addAttribute("location", "form");
+    return "/form";
+  }
 }

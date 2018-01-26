@@ -1,1 +1,41 @@
-/* your styles go here */
+.dashboard-counts .container-fluid .row {
+    display: block;
+}
+
+section.dashboard-counts .row {
+    padding-bottom: 0;
+}
+
+.item-group-container {
+    margin-top: 16px;
+    display: block;
+}
+
+.item-group {
+    width: 200px;
+    padding: 16px;
+    display: inline-block;
+    background: #fafafa;
+    margin-right: 16px;
+    margin-top: 16px;
+}
+
+.item-group .form-control-sm {
+    width: 140px;
+}
+
+.item-group-textarea {
+    padding-top: 10px;
+}
+
+.item-fetch-container {
+    margin-right: -15px;
+    margin-left: -15px;
+    margin-top: 30px;
+}
+
+.item-fetch-container .btn {
+    width: 100%;
+    border-radius: 0;
+    font-size: 22px;
+}
