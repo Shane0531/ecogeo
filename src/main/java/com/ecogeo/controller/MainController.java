@@ -25,7 +25,7 @@ public class MainController extends BaseController {
     SessionContext sessionContext = getSessionContext(request);
     model.addAttribute("sessionContext",sessionContext);
     if (sessionContext.getIsLogin()) {
-      return "redirect:/index";
+      return "redirect:/species";
     }
     request.getSession().removeAttribute("tmpSessionContext");
     return "/login";
@@ -38,7 +38,7 @@ public class MainController extends BaseController {
     if( user != null) {
       // Set Session
       request.getSession().setAttribute("sessionContext", new SessionContext(user));
-      return "redirect:/index";
+      return "redirect:/species";
     } else {
       model.addAttribute("show_error", true);
       return "/login";
@@ -54,13 +54,7 @@ public class MainController extends BaseController {
 
   @GetMapping("/")
   public String redirectIndex(HttpServletRequest request, Model model) {
-    return "redirect:/index";
-  }
-
-  @GetMapping("/index")
-  public String viewIndex(HttpServletRequest request, Model model) {
-    model.addAttribute("location", "index");
-    return "/index";
+    return "redirect:/species";
   }
 
   @GetMapping("/chart")

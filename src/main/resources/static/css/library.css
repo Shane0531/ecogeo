@@ -1,0 +1,7 @@
+.sa-success::before {
+    top: -20px !important;
+}
+
+.btn {
+    font-size: 13px;
+}

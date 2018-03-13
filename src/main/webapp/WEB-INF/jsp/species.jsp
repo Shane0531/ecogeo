@@ -26,8 +26,22 @@
     }
 
     function deleteItem(obj) {
-      var item = obj.parentNode.parentNode.parentNode;
-      item.remove();
+      swal({
+          title: "Are you sure?",
+          text: "정말로 그룹을 삭제하시겠습니까?",
+          type: "warning",
+          showCancelButton: true,
+          confirmButtonClass: "btn-danger",
+          confirmButtonText: "네",
+          cancelButtonText: "아니요"
+        },
+        function(isConfirm) {
+          if (isConfirm) {
+            var item = obj.parentNode.parentNode.parentNode;
+            item.remove();
+          }
+        });
+
     }
   </script>
 </head>

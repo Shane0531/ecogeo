@@ -49,7 +49,7 @@ public class Item {
   String formaName;
 
   //멸종위기
-  Boolean propCrisis;
+  Integer propCrisis;
 
   //희귀
   String propRare;

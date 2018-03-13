@@ -20,6 +20,8 @@
   <link rel="stylesheet" href="css/style.green.css" id="theme-stylesheet">
   <!-- Custom stylesheet - for your changes-->
   <link rel="stylesheet" href="css/custom.css">
+  <link rel="stylesheet" href="css/library.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-sweetalert/1.0.1/sweetalert.min.css">
   <!-- Favicon-->
   <link rel="shortcut icon" href="img/favicon.ico">
   <!-- Tweaks for older IEs--><!--[if lt IE 9]>
@@ -28,6 +30,7 @@
   <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
   <script src="vendor/jquery.cookie/jquery.cookie.js"> </script>
   <script src="vendor/jquery-validation/jquery.validate.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-sweetalert/1.0.1/sweetalert.min.js"></script>
 
   <sitemesh:write property='head'/>
 </head>

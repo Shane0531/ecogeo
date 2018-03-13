@@ -14,7 +14,7 @@
       <div class="navbar-holder d-flex align-items-center justify-content-between">
         <!-- Navbar Header-->
         <div class="navbar-header">
-          <!-- Navbar Brand --><a href="/index" class="navbar-brand">
+          <!-- Navbar Brand --><a href="/species" class="navbar-brand">
           <div class="brand-text brand-big"><span>Eco </span><strong>Geo</strong></div>
           <div class="brand-text brand-small"><strong>EG</strong></div></a>
           <!-- Toggle Button--><a id="toggle-btn" href="#" class="menu-btn active"><span></span><span></span><span></span></a>
