@@ -5,25 +5,32 @@
   <title>종목록생성기</title>
   <script type="text/javascript">
 
-    $(function () {
-      $( ".item-group-container" ).append( "<div class='item-group has-shadow'>"+
-        "<div class='input-group'>"+
-        "<input type='text' class='form-control' placeholder='그룹이름'>"+
-        "<div class='input-group-append'>"+
-        "<button type='button' class='btn btn-danger' onclick='deleteItem(this)'>삭제</button></div></div>"+
-        "<div class='item-group-textarea'><textarea class='form-control' rows='18' id='comment'></textarea></div></div>"
+    function addNode() {
+      $(".item-group-container").append("<div class='item-group has-shadow'>" +
+        "<div class='input-group'>" +
+        "<input type='text' name='group_name' class='form-control' placeholder='그룹이름' value=' '>" +
+        "<div class='input-group-append'>" +
+        "<button type='button' class='btn btn-danger' onclick='deleteItem(this)'>삭제</button></div></div>" +
+        "<div class='item-group-textarea'><textarea class='form-control' rows='18' name='item_group'></textarea></div></div>"
       );
-
-    });
-    function addItemGroup() {
-      $( ".item-group-container" ).append( "<div class='item-group has-shadow'>"+
-      "<div class='input-group'>"+
-        "<input type='text' class='form-control' placeholder='그룹이름'>"+
-        "<div class='input-group-append'>"+
-        "<button type='button' class='btn btn-danger' onclick='deleteItem(this)'>삭제</button></div></div>"+
-        "<div class='item-group-textarea'><textarea class='form-control' rows='18' id='comment'></textarea></div></div>"
-        );
     }
+
+    $(function () {
+
+      $("#button").click(function (e) {
+        var f = document.Form;
+        $("#button").text(' ');
+        $("#button").append("<img class='svg' src='assets/three-dots.svg' />");
+
+        var data = $(f).serialize();
+        l_ajax("post", "html", "species_result.ajax", data, function (html) {
+          $("#result-area").empty().html(html);
+          $( ".svg" ).remove();
+          $("#button").text('가져오기');
+        });
+
+      });
+    });
 
     function deleteItem(obj) {
       swal({
@@ -35,7 +42,7 @@
           confirmButtonText: "네",
           cancelButtonText: "아니요"
         },
-        function(isConfirm) {
+        function (isConfirm) {
           if (isConfirm) {
             var item = obj.parentNode.parentNode.parentNode;
             item.remove();
@@ -56,29 +63,29 @@
   <!-- Dashboard Counts Section-->
   <section class="dashboard-counts no-padding-bottom">
     <div class="container-fluid">
-      <div class="row bg-white has-shadow">
+      <div class="row bg-white has-shadow no-padding-bottom">
 
-        <button class="btn btn-primary" onclick="addItemGroup()">+ 그룹추가</button>
+        <button class="btn btn-primary" onclick="addNode()">+ 그룹추가</button>
 
-        <div class="item-group-container">
+        <form name="Form" method="post">
+          <div class="item-group-container">
 
-          <%--<div class="item-group has-shadow">--%>
-            <%--<div class="input-group">--%>
-              <%--<input type="text" class="form-control" placeholder="그룹이름">--%>
-              <%--<div class="input-group-append">--%>
-                <%--<button type="button" class="btn btn-danger">삭제</button>--%>
-              <%--</div>--%>
-            <%--</div>--%>
+            <div class="item-group has-shadow">
+              <div class="input-group">
+                <input type="text" class="form-control" name='group_name' placeholder="그룹이름" value=" ">
+                <div class="input-group-append">
+                  <button type="button" class="btn btn-danger">삭제</button>
+                </div>
+              </div>
+              <div class='item-group-textarea'><textarea class='form-control' rows='18' name='item_group'></textarea>
+              </div>
+            </div>
 
-            <%--<div class="item-group-textarea">--%>
-              <%--<textarea class="form-control" rows="18" id="comment"></textarea>--%>
-            <%--</div>--%>
-          <%--</div>--%>
-
-        </div>
+          </div>
+        </form>
 
         <div class="item-fetch-container">
-          <button class="btn btn-warning">가져오기</button>
+          <button class="btn btn-warning" id="button" style="font-weight: 400 !important;">가져오기</button>
         </div>
       </div>
 
@@ -86,6 +93,19 @@
 
   </section>
 
+  <section class="dashboard-counts">
+    <div class="container-fluid">
+      <div class="row bg-white has-shadow">
+
+        <div id="result-area">
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
 
 
 </div>

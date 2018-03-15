@@ -9,73 +9,78 @@ import javax.persistence.Id;
 @Data
 @Entity
 public class Item {
+
   @Id
-  @GeneratedValue
-  int idx;
+  protected String realName;
 
   //계
-  String species;
+  protected String species;
 
   //세부분류군명
-  String detailSpecies;
+  protected String detailSpecies;
 
   //학명
-  String scientificName;
+  protected String scientificName;
 
-  String scientificKorName;
+  protected String scientificKorName;
 
-  String lifeType;
+  protected String lifeType;
 
   //문
-  String phylumName;
+  protected String phylumName;
 
   //목
-  String orderName;
+  protected String orderName;
 
   //과
-  String familyName;
+  protected String familyName;
 
   //명명자
-  String speciesSimpleName;
+  protected String speciesSimpleName;
 
-  String realName;
+  protected String subSpeciese;
 
-  String subSpeciese;
+  protected String variety;
 
-  String variety;
+  protected String formaCheck;
 
-  String formaCheck;
-
-  String formaName;
+  protected String formaName;
 
   //멸종위기
-  Integer propCrisis;
+  protected Integer propCrisis;
 
   //희귀
-  String propRare;
+  protected String propRare;
 
   //특산
-  Boolean propSpecialty;
+  protected Boolean propSpecialty;
 
   //귀화
-  Boolean propNatural;
+  protected Boolean propNatural;
 
   //생태계교란
-  Boolean propDerange;
+  protected Boolean propDerange;
 
   //도래유형
-  String propAdvent;
+  protected String propAdvent;
 
   //천연기념물
-  Boolean propMonument;
+  protected Boolean propMonument;
 
   //고유종
-  Boolean propOrigin;
+  protected Boolean propOrigin;
 
   //외래종
-  Boolean propAlien;
+  protected Boolean propAlien;
 
   //국외반출승인종
-  Boolean propAoea;
+  protected Boolean propAoea;
 
+  public Item() {
+
+  }
+
+  public Item(String name) {
+    this.realName = name;
+  }
 }

@@ -1818,10 +1818,6 @@ input.input-material ~ label.active {
   margin-bottom: 30px;
 }
 
-.modal-content {
-  border-radius: 0;
-}
-
 .i-checks {
   display: -webkit-box;
   display: -ms-flexbox;

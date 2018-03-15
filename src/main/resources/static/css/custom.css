@@ -2,10 +2,6 @@
     display: block;
 }
 
-section.dashboard-counts .row {
-    padding-bottom: 0;
-}
-
 .item-group-container {
     margin-top: 16px;
     display: block;
@@ -38,4 +34,22 @@ section.dashboard-counts .row {
     width: 100%;
     border-radius: 0;
     font-size: 22px;
+}
+
+.table-container {
+    max-height: 900px;
+}
+
+.family {
+    background: aquamarine;
+    font-weight: 500;
+}
+
+.order {
+    background: blanchedalmond;
+    font-weight: 500;
+}
+
+.f-o-item .scName {
+    font-family: "Trebuchet MS", Verdana, Helvetica, Sans-Serif;
 }
