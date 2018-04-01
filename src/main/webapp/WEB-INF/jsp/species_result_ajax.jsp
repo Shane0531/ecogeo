@@ -8,7 +8,6 @@
 
     $(function () {
       $('#Modal').modal('show')
-      <%--swal("검색안된 종이 ${noneCount}개 있습니다.", "${none}")--%>
     });
 
 
@@ -26,32 +25,29 @@
         <th class="text-center" width="100px">${item}</th>
       </c:forEach>
       <th class="text-center" width="100px">전체</th>
-      <th class="text-center" width="70px">멸종위기<br>야생동물</th>
-      <th class="text-center" width="50px">천연<br>기념물</th>
-      <th class="text-center" width="50px">비고</th>
+      <th class="text-center" width="50px">생활형</th>
+      <th class="text-center" width="80px">비고</th>
     </tr>
     </thead>
     <tbody>
       <c:forEach var="family" items="${result.keySet()}" varStatus="f">
         <tr class="family">
-          <td>&nbsp;Scientific Name</td>
-          <td>&nbsp;${family}</td>
+          <td>&nbsp;Order ${family.enName}</td>
+          <td>&nbsp;${family.korName}</td>
           <c:forEach var="item" items="${group_name}" varStatus="i">
             <td></td>
           </c:forEach>
           <td></td>
           <td></td>
           <td></td>
-          <td></td>
         </tr>
         <c:forEach var="order" items="${result.get(family).keySet()}" varStatus="o">
           <tr class="order">
-            <td>&nbsp;&nbsp;Scientific Name</td>
-            <td>&nbsp;&nbsp;${order}</td>
+            <td>&nbsp;&nbsp;Family ${order.enName}</td>
+            <td>&nbsp;&nbsp;${order.korName}</td>
             <c:forEach var="item" items="${group_name}" varStatus="i">
               <td></td>
             </c:forEach>
-            <td></td>
             <td></td>
             <td></td>
             <td></td>
@@ -64,20 +60,19 @@
                 <td class="text-center"><c:if test="${item.getGroup().contains(name)}">O</c:if></td>
               </c:forEach>
               <td class="text-center">O</td>
-              <td class="text-center"></td>
-              <td class="text-center"></td>
-              <td class="text-center"></td>
+              <td class="text-center">${item.lifeType}</td>
+              <td class="text-center">${item.getETC()}</td>
             </tr>
           </c:forEach>
         </c:forEach>
       </c:forEach>
       <tr>
-        <td class="text-center" colspan="2">총합</td>
+        <td class="text-center" colspan="2">총 합</td>
         <c:forEach var="name" items="${group_name}" varStatus="i">
           <td class="text-center">${totalMap.get(name).getTotal()}</td>
         </c:forEach>
         <td class="text-center">${totalMap.get('totalKSH').getTotal()}</td>
-        <td class="text-center" colspan="3"></td>
+        <td class="text-center" colspan="10"></td>
       </tr>
     </tbody>
   </table>

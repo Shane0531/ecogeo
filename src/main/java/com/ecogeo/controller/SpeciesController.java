@@ -49,7 +49,7 @@ public class SpeciesController {
       noneCount++;
     }
 
-    Map<String,Map<String,List<ItemDTO>>> result = new HashMap<>();
+    Map<UpperItem,Map<UpperItem,List<ItemDTO>>> result = new HashMap<>();
 
     Map<String,List<Item>> order = new HashMap<>();
 
@@ -65,7 +65,7 @@ public class SpeciesController {
     }
 
     for(String key : order.keySet()) {
-      Map<String,List<ItemDTO>> family = new HashMap<>();
+      Map<UpperItem,List<ItemDTO>> family = new HashMap<>();
       List<Item> orderList = order.get(key);
       for(Item i : orderList) {
         ItemDTO dto = new ItemDTO();
@@ -89,15 +89,15 @@ public class SpeciesController {
         totalMap.put("totalKSH",total);
         dto.setGroup(groupNames);
 
-        if(family.containsKey(i.getFamilyName())) {
-          family.get(i.getFamilyName()).add(dto);
+        if(family.containsKey(new UpperItem(i.getFamilyEnName(),i.getFamilyName()))) {
+          family.get(new UpperItem(i.getFamilyEnName(),i.getFamilyName())).add(dto);
         } else {
           List<ItemDTO> itemList = new ArrayList<>();
           itemList.add(dto);
-          family.put(i.getFamilyName(), itemList);
+          family.put(new UpperItem(i.getFamilyEnName(),i.getFamilyName()), itemList);
         }
       }
-      result.put(key,family);
+      result.put(new UpperItem(orderList.get(0).getOrderEnName(),orderList.get(0).getOrderName()),family);
     }
 
 
@@ -124,33 +124,39 @@ public class SpeciesController {
       species = i.getSpecies();
       detailSpecies = i.getDetailSpecies();
       scientificName = i.getScientificName();
-      scientificKorName = i.getScientificKorName();
       lifeType = i.getLifeType();
       phylumName = i.getPhylumName();
+      phylumEnName = i.getPhylumEnName();
       orderName = i.getOrderName();
+      orderEnName = i.getOrderEnName();
       familyName = i.getFamilyName();
+      familyEnName = i.getFamilyEnName();
       speciesSimpleName = i.getSpeciesSimpleName();
       subSpeciese = i.getSubSpeciese();
-      variety = i.getVariety();
-      formaCheck = i.getFormaCheck();
-      formaName = i.getFormaName();
       propCrisis = i.getPropCrisis();
       propRare = i.getPropRare();
       propSpecialty = i.getPropSpecialty();
       propNatural = i.getPropNatural();
       propDerange = i.getPropDerange();
       propAdvent = i.getPropAdvent();
-      propMonument = i.getPropMonument();
-      propOrigin = i.getPropOrigin();
-      propAlien = i.getPropAlien();
-      propAoea = i.getPropAoea();
+      propJong = i.getPropJong();
+      propGugyejong = i.getPropGugyejong();
+//      propMonument = i.getPropMonument();
+//      propOrigin = i.getPropOrigin();
+//      propAlien = i.getPropAlien();
+//      propAoea = i.getPropAoea();
     }
   }
 
   @Data
   public static class UpperItem {
-    String SciName;
+    String EnName;
     String KorName;
+
+    public UpperItem(String en,String kor) {
+      EnName = en;
+      KorName = kor;
+    }
   }
 
   @Data
