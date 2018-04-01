@@ -8,4 +8,5 @@ import org.springframework.data.repository.query.Param;
 
 public interface ItemRepo extends JpaRepository<Item, String> {
 
+  Item findOneBySpeciesAndRealName(String species,String RealName);
 }

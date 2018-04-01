@@ -13,7 +13,7 @@ public class ItemService {
   @Autowired
   ItemRepo itemRepo;
 
-  public Map<String,List<Item>> selectItem(String items) {
+  public Map<String,List<Item>> selectItem(String items,String filter) {
     Map<String, List<Item>> map = new HashMap<>();
     List<Item> have = new LinkedList<>();
     List<Item> none = new LinkedList<>();
@@ -24,7 +24,7 @@ public class ItemService {
 
     for(String wo : wordSet) {
       if(!wo.equals("")) {
-        Item i = itemRepo.findOne(wo);
+        Item i = itemRepo.findOneBySpeciesAndRealName(filter,wo);
         if (i != null)
           have.add(i);
         else

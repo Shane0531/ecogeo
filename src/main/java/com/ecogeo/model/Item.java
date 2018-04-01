@@ -1,6 +1,7 @@
 package com.ecogeo.model;
 
 import lombok.Data;
+import org.springframework.context.annotation.Primary;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

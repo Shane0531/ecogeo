@@ -26,7 +26,7 @@ public class SpeciesController {
   }
 
   @PostMapping("/species_result.ajax")
-  public String result(@RequestParam List<String> group_name, @RequestParam List<String> item_group
+  public String result(@RequestParam String filter,@RequestParam List<String> group_name, @RequestParam List<String> item_group
           , Model model) {
     Map<String,Total> totalMap = new HashMap<>();
     for(String name : group_name) {
@@ -39,7 +39,7 @@ public class SpeciesController {
       items += item + "\r\n";
     }
 
-    Map<String,List<Item>> selectItem = itemService.selectItem(items);
+    Map<String,List<Item>> selectItem = itemService.selectItem(items,filter);
     List<Item> have = selectItem.get("have");
     String none = "";
     int noneCount = 0;
@@ -107,11 +107,11 @@ public class SpeciesController {
 
 
     model.addAttribute("group_name", group_name);
-    model.addAttribute("result", result);
     model.addAttribute("none", none);
     model.addAttribute("noneCount", noneCount);
     model.addAttribute("result", result);
     model.addAttribute("totalMap", totalMap);
+    model.addAttribute("filter",filter);
     return "/species_result_ajax";
   }
 
