@@ -146,6 +146,11 @@ public class SpeciesController {
 //      propAlien = i.getPropAlien();
 //      propAoea = i.getPropAoea();
     }
+
+
+    public String[] getScientificNameArray() {
+      return scientificName.split(" ");
+    }
   }
 
   @Data

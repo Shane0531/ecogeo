@@ -54,7 +54,16 @@
           </tr>
           <c:forEach var="item" items="${result.get(family).get(order)}" varStatus="i">
             <tr class="f-o-item">
-              <td class="scName">&nbsp;&nbsp;&nbsp;${item.scientificName}</td>
+              <td class="scName">&nbsp;&nbsp;&nbsp;
+              <c:forEach var="sc" items="${item.getScientificNameArray()}" varStatus="idx">
+                <span  <c:if test="${idx.index == 0 || idx.index == 1 ||
+                 (idx.index > 2 && (item.getScientificNameArray()[idx.index - 1] == 'var.') ||
+                 item.getScientificNameArray()[idx.index - 1] == 'for.' ||
+                 item.getScientificNameArray()[idx.index - 1] == 'subsp.')}">class="font-italic"</c:if>  >
+                  ${sc}
+                </span>
+              </c:forEach>
+              </td>
               <td>&nbsp;&nbsp;&nbsp;${item.realName}</td>
               <c:forEach var="name" items="${group_name}" varStatus="i">
                 <td class="text-center"><c:if test="${item.getGroup().contains(name)}">O</c:if></td>
