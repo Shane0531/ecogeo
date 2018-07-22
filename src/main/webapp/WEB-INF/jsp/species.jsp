@@ -5,16 +5,6 @@
   <title>종목록생성기</title>
   <script type="text/javascript">
 
-    function addNode() {
-      $(".item-group-container").append("<div class='item-group has-shadow'>" +
-        "<div class='input-group'>" +
-        "<input type='text' name='group_name' class='form-control' placeholder='그룹이름' value=' '>" +
-        "<div class='input-group-append'>" +
-        "<button type='button' class='btn btn-danger' onclick='deleteItem(this)'>삭제</button></div></div>" +
-        "<div class='item-group-textarea'><textarea class='form-control' rows='18' name='item_group'></textarea></div></div>"
-      );
-    }
-
     $(function () {
 
       $("#button").click(function (e) {
@@ -31,6 +21,16 @@
 
       });
     });
+
+    function addNode() {
+        $(".item-group-container").append("<div class='item-group has-shadow'>" +
+            "<div class='input-group'>" +
+            "<input type='text' name='group_name' class='form-control' placeholder='그룹이름' value=' '>" +
+            "<div class='input-group-append'>" +
+            "<button type='button' class='btn btn-danger' onclick='deleteItem(this)'>삭제</button></div></div>" +
+            "<div class='item-group-textarea'><textarea class='form-control' rows='18' name='item_group'></textarea></div></div>"
+        );
+    }
 
     function deleteItem(obj) {
       swal({
@@ -68,10 +68,10 @@
         <form name="Form" method="post">
           <select name="filter" class="form-control" style="width: 150px; display: inline-block; height: 34px;">
             <option>관속식물</option>
-            <option>표유류</option>
-            <option>양서류</option>
+            <%--<option>표유류</option>--%>
+            <%--<option>양서류</option>--%>
           </select>
-          <button class="btn btn-primary" onclick="addNode()">+ 그룹추가</button>
+          <a class="btn btn-primary" onclick="addNode()">+ 그룹추가</a>
 
           <div class="item-group-container">
 
@@ -79,7 +79,7 @@
               <div class="input-group">
                 <input type="text" class="form-control" name='group_name' placeholder="그룹이름" value=" ">
                 <div class="input-group-append">
-                  <button type="button" class="btn btn-danger">삭제</button>
+                  <button type="button" class="btn btn-danger" onclick='deleteItem(this)'>삭제</button>
                 </div>
               </div>
               <div class='item-group-textarea'><textarea class='form-control' rows='18' name='item_group'></textarea>

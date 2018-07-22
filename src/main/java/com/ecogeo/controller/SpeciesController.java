@@ -1,6 +1,7 @@
 package com.ecogeo.controller;
 
 import com.ecogeo.model.Item;
+import com.ecogeo.model.PlantItem;
 import com.ecogeo.service.ItemService;
 import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,26 +40,26 @@ public class SpeciesController {
       items += item + "\r\n";
     }
 
-    Map<String,List<Item>> selectItem = itemService.selectItem(items,filter);
-    List<Item> have = selectItem.get("have");
+    Map<String,List<PlantItem>> selectItem = itemService.selectPlantItem(items,filter);
+    List<PlantItem> have = selectItem.get("have");
     String none = "";
     int noneCount = 0;
 
-    for(Item s : selectItem.get("none")) {
+    for(PlantItem s : selectItem.get("none")) {
       none += s.getRealName() + "\r\n";
       noneCount++;
     }
 
     Map<UpperItem,Map<UpperItem,List<ItemDTO>>> result = new HashMap<>();
 
-    Map<String,List<Item>> order = new HashMap<>();
+    Map<String,List<PlantItem>> order = new HashMap<>();
 
     //먼저 OrderName으로 분류
-    for(Item i : have) {
+    for(PlantItem i : have) {
       if(order.containsKey(i.getOrderName())) {
         order.get(i.getOrderName()).add(i);
       } else {
-        List<Item> itemList = new ArrayList<>();
+        List<PlantItem> itemList = new ArrayList<>();
         itemList.add(i);
         order.put(i.getOrderName(), itemList);
       }
@@ -66,8 +67,8 @@ public class SpeciesController {
 
     for(String key : order.keySet()) {
       Map<UpperItem,List<ItemDTO>> family = new HashMap<>();
-      List<Item> orderList = order.get(key);
-      for(Item i : orderList) {
+      List<PlantItem> orderList = order.get(key);
+      for(PlantItem i : orderList) {
         ItemDTO dto = new ItemDTO();
         dto.pack(i);
 
@@ -116,29 +117,24 @@ public class SpeciesController {
   }
 
   @Data
-  public static class ItemDTO extends Item {
+  public static class ItemDTO extends PlantItem {
     List<String> group;
 
-    public void pack(Item i) {
+    public void pack(PlantItem i) {
       realName = i.getRealName();
       species = i.getSpecies();
-      detailSpecies = i.getDetailSpecies();
       scientificName = i.getScientificName();
       lifeType = i.getLifeType();
-      phylumName = i.getPhylumName();
-      phylumEnName = i.getPhylumEnName();
       orderName = i.getOrderName();
       orderEnName = i.getOrderEnName();
       familyName = i.getFamilyName();
       familyEnName = i.getFamilyEnName();
-      speciesSimpleName = i.getSpeciesSimpleName();
-      subSpeciese = i.getSubSpeciese();
       propCrisis = i.getPropCrisis();
       propRare = i.getPropRare();
       propSpecialty = i.getPropSpecialty();
       propNatural = i.getPropNatural();
-      propDerange = i.getPropDerange();
-      propAdvent = i.getPropAdvent();
+//      propDerange = i.getPropDerange();
+//      propAdvent = i.getPropAdvent();
       propJong = i.getPropJong();
       propGugyejong = i.getPropGugyejong();
 //      propMonument = i.getPropMonument();

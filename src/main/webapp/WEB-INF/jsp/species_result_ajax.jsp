@@ -54,7 +54,7 @@
           </tr>
           <c:forEach var="item" items="${result.get(family).get(order)}" varStatus="i">
             <tr class="f-o-item">
-              <td class="scName">&nbsp;&nbsp;&nbsp;
+              <td class="scName">&nbsp;&nbsp;
               <c:forEach var="sc" items="${item.getScientificNameArray()}" varStatus="idx">
                 <span  <c:if test="${idx.index == 0 || idx.index == 1 ||
                  (idx.index > 2 && (item.getScientificNameArray()[idx.index - 1] == 'var.') ||
