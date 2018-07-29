@@ -68,7 +68,7 @@
         <form name="Form" method="post">
           <select name="filter" class="form-control" style="width: 150px; display: inline-block; height: 34px;">
             <option>관속식물</option>
-            <%--<option>표유류</option>--%>
+            <option>표유류</option>
             <%--<option>양서류</option>--%>
           </select>
           <a class="btn btn-primary" onclick="addNode()">+ 그룹추가</a>

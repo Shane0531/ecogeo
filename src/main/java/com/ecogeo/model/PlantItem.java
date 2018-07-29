@@ -5,6 +5,10 @@ import lombok.Data;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
+/**
+ * 관속식물
+ */
+
 @Data
 @Entity
 public class PlantItem {
@@ -13,6 +17,16 @@ public class PlantItem {
 
   //계
   protected String species;
+
+  //문
+  protected String phylumName;
+
+  protected String phylumEnName;
+
+  //강
+  protected String className;
+
+  protected String classEnName;
 
   //목
   protected String orderName;
