@@ -13,7 +13,7 @@
         $("#button").append("<img class='svg' src='assets/three-dots.svg' />");
 
         var data = $(f).serialize();
-        l_ajax("post", "html", "species_result.ajax", data, function (html) {
+        l_ajax("post", "html", "species_result_three.ajax", data, function (html) {
           $("#result-area").empty().html(html);
           $( ".svg" ).remove();
           $("#button").text('가져오기');
@@ -68,7 +68,7 @@
         <form name="Form" method="post">
           <select name="filter" class="form-control" style="width: 150px; display: inline-block; height: 34px;">
             <option>관속식물</option>
-            <option>표유류</option>
+            <option>포유류</option>
             <%--<option>양서류</option>--%>
           </select>
           <a class="btn btn-primary" onclick="addNode()">+ 그룹추가</a>

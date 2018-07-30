@@ -1,34 +1,26 @@
 package com.ecogeo.controller;
 
-import com.ecogeo.model.Item;
+import com.ecogeo.model.MamItem;
 import com.ecogeo.model.PlantItem;
 import com.ecogeo.service.ItemService;
 import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import javax.servlet.http.HttpServletRequest;
 import java.util.*;
 
 @Controller
-public class SpeciesController {
+public class SpeciesResultController {
 
   @Autowired
   ItemService itemService;
 
-  @GetMapping("/species")
-  public String viewSpecies(HttpServletRequest request, Model model) {
-    model.addAttribute("location", "species");
-    return "/species";
-  }
-
-  @PostMapping("/species_result_five.ajax")
-  public String resultFive(@RequestParam String filter,@RequestParam List<String> group_name, @RequestParam List<String> item_group
-          , Model model) {
+  @PostMapping("/species_result_three.ajax")
+  public String resultThree(@RequestParam String filter, @RequestParam List<String> group_name, @RequestParam List<String> item_group
+      , Model model) {
     Map<String,Total> totalMap = new HashMap<>();
     for(String name : group_name) {
       if(!name.equals(""))
@@ -40,26 +32,26 @@ public class SpeciesController {
       items += item + "\r\n";
     }
 
-    Map<String,List<PlantItem>> selectItem = itemService.selectPlantItem(items,filter);
-    List<PlantItem> have = selectItem.get("have");
+    Map<String,List<MamItem>> selectItem = itemService.selectMamItem(items,filter);
+    List<MamItem> have = selectItem.get("have");
     String none = "";
     int noneCount = 0;
 
-    for(PlantItem s : selectItem.get("none")) {
+    for(MamItem s : selectItem.get("none")) {
       none += s.getRealName() + "\r\n";
       noneCount++;
     }
 
     Map<UpperItem,Map<UpperItem,List<ItemDTO>>> result = new HashMap<>();
 
-    Map<String,List<PlantItem>> order = new HashMap<>();
+    Map<String,List<MamItem>> order = new HashMap<>();
 
     //먼저 OrderName으로 분류
-    for(PlantItem i : have) {
+    for(MamItem i : have) {
       if(order.containsKey(i.getOrderName())) {
         order.get(i.getOrderName()).add(i);
       } else {
-        List<PlantItem> itemList = new ArrayList<>();
+        List<MamItem> itemList = new ArrayList<>();
         itemList.add(i);
         order.put(i.getOrderName(), itemList);
       }
@@ -67,8 +59,8 @@ public class SpeciesController {
 
     for(String key : order.keySet()) {
       Map<UpperItem,List<ItemDTO>> family = new HashMap<>();
-      List<PlantItem> orderList = order.get(key);
-      for(PlantItem i : orderList) {
+      List<MamItem> orderList = order.get(key);
+      for(MamItem i : orderList) {
         ItemDTO dto = new ItemDTO();
         dto.pack(i);
 
@@ -117,14 +109,13 @@ public class SpeciesController {
   }
 
   @Data
-  public static class ItemDTO extends PlantItem {
+  public static class ItemDTO extends MamItem {
     List<String> group;
 
-    public void pack(PlantItem i) {
+    public void pack(MamItem i) {
       realName = i.getRealName();
       species = i.getSpecies();
       scientificName = i.getScientificName();
-      lifeType = i.getLifeType();
       orderName = i.getOrderName();
       orderEnName = i.getOrderEnName();
       familyName = i.getFamilyName();
@@ -133,14 +124,9 @@ public class SpeciesController {
       propRare = i.getPropRare();
       propSpecialty = i.getPropSpecialty();
       propNatural = i.getPropNatural();
-//      propDerange = i.getPropDerange();
-//      propAdvent = i.getPropAdvent();
       propJong = i.getPropJong();
       propGugyejong = i.getPropGugyejong();
-//      propMonument = i.getPropMonument();
-//      propOrigin = i.getPropOrigin();
-//      propAlien = i.getPropAlien();
-//      propAoea = i.getPropAoea();
+      propMonument = i.getPropMonument();
     }
 
 

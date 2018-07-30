@@ -30,7 +30,8 @@ public class ServletConfig implements InitializingBean, DisposableBean {
       @Override
       protected void applyCustomConfiguration(SiteMeshFilterBuilder builder) {
         builder.addDecoratorPath("/*", "/WEB-INF/resource/default.jsp")
-                .addExcludedPath("/species_result.ajax")
+                .addExcludedPath("/species_result_three.ajax")
+                .addExcludedPath("/species_result_five.ajax")
                 .addExcludedPath("/login");
       }
     });

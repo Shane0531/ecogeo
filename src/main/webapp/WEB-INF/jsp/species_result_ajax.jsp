@@ -25,7 +25,7 @@
         <th class="text-center" width="100px">${item}</th>
       </c:forEach>
       <th class="text-center" width="100px">전체</th>
-      <th class="text-center" width="50px">생활형</th>
+      <%--<th class="text-center" width="50px">생활형</th>--%>
       <th class="text-center" width="80px">비고</th>
     </tr>
     </thead>
@@ -39,7 +39,6 @@
           </c:forEach>
           <td></td>
           <td></td>
-          <td></td>
         </tr>
         <c:forEach var="order" items="${result.get(family).keySet()}" varStatus="o">
           <tr class="order">
@@ -48,7 +47,6 @@
             <c:forEach var="item" items="${group_name}" varStatus="i">
               <td></td>
             </c:forEach>
-            <td></td>
             <td></td>
             <td></td>
           </tr>
@@ -69,7 +67,7 @@
                 <td class="text-center"><c:if test="${item.getGroup().contains(name)}">O</c:if></td>
               </c:forEach>
               <td class="text-center">O</td>
-              <td class="text-center">${item.lifeType}</td>
+              <%--<td class="text-center">${item.lifeType}</td>--%>
               <td class="text-center">${item.getETC()}</td>
             </tr>
           </c:forEach>

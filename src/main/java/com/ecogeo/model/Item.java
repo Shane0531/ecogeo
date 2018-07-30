@@ -83,9 +83,9 @@ public class Item {
 
   public String getETC() {
     String etc = "";
-    if(!propCrisis.isEmpty()) etc += propCrisis;
-    if(!propCrisis.isEmpty() && !propMonument.isEmpty()) etc += ", ";
-    if(!propMonument.isEmpty()) etc += "천";
+    if(propCrisis != null && !propCrisis.isEmpty()) etc += propCrisis;
+    if((propCrisis != null && !propCrisis.isEmpty()) && (propMonument != null && !propMonument.isEmpty())) etc += ", ";
+    if(propMonument != null && !propMonument.isEmpty()) etc += "천";
     return etc;
   }
 }

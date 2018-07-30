@@ -55,7 +55,7 @@ public class ItemService {
 
     for(String wo : wordSet) {
       if(!wo.equals("")) {
-        MamItem i = mamItemRepo.findOneBySpeciesAndRealName(filter,wo);
+        MamItem i = mamItemRepo.findOneByRealName(wo);
         if (i != null)
           have.add(i);
         else
