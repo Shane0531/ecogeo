@@ -88,7 +88,7 @@
                 </span>
                                     </c:forEach>
                                 </td>
-                                <td>&nbsp;&nbsp;&nbsp;${item.realName}</td>
+                                <td>&nbsp;&nbsp;&nbsp;&nbsp;${item.realName}</td>
                                 <c:forEach var="name" items="${group_name}" varStatus="i">
                                     <td class="text-center"><c:if test="${item.getGroup().contains(name)}">O</c:if></td>
                                 </c:forEach>
