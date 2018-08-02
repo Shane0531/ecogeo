@@ -9,11 +9,19 @@
 
       $("#button").click(function (e) {
         var f = document.Form;
+        var url;
         $("#button").text(' ');
         $("#button").append("<img class='svg' src='assets/three-dots.svg' />");
 
+        var filter = f.filter.value;
+        if(filter === "관속식물")
+          url = "species_result_five.ajax"
+        else
+          url = "species_result_three.ajax"
+
+
         var data = $(f).serialize();
-        l_ajax("post", "html", "species_result_three.ajax", data, function (html) {
+        l_ajax("post", "html", url, data, function (html) {
           $("#result-area").empty().html(html);
           $( ".svg" ).remove();
           $("#button").text('가져오기');

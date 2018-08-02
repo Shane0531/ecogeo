@@ -105,7 +105,7 @@ public class SpeciesResultController {
     model.addAttribute("result", result);
     model.addAttribute("totalMap", totalMap);
     model.addAttribute("filter",filter);
-    return "/species_result_ajax";
+    return "/species_result_ajax_three";
   }
 
   @Data

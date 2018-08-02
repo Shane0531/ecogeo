@@ -40,13 +40,23 @@
     /*max-height: 900px;*/
 /*}*/
 
+.moon {
+    background: #cfd0e1;
+    font-weight: 500;
+}
+
+.gang {
+    background: #acdda8;
+    font-weight: 500;
+}
+
 .family {
-    background: aquamarine;
+    background: #f3f4de	;
     font-weight: 500;
 }
 
 .order {
-    background: blanchedalmond;
+    background: #e0f2f2;
     font-weight: 500;
 }
 
