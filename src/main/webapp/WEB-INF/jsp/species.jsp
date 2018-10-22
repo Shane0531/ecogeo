@@ -77,7 +77,11 @@
           <select name="filter" class="form-control" style="width: 150px; display: inline-block; height: 34px;">
             <option>관속식물</option>
             <option>포유류</option>
-            <%--<option>양서류</option>--%>
+            <option>양서강</option>
+            <option>파충강</option>
+            <option>곤충</option>
+            <option>담수어류</option>
+            <option>저서동물</option>
           </select>
           <a class="btn btn-primary" onclick="addNode()">+ 그룹추가</a>
 

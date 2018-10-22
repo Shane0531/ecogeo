@@ -2,12 +2,18 @@ package com.ecogeo.model;
 
 import lombok.Data;
 
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 
 @MappedSuperclass
 @Data
-public class Item {
+public class FullItem {
+  @Id
+  @GeneratedValue(strategy = GenerationType.AUTO)
+  protected Integer idx;
+
   protected String realName;
 
   //계
@@ -24,7 +30,6 @@ public class Item {
   protected String familyEnName;
 
   //학명
-  @Id
   protected String scientificName;
 
   //종구분
@@ -72,11 +77,11 @@ public class Item {
   //외래
   protected String propAlien;
 
-  public Item() {
+  public FullItem() {
 
   }
 
-  public Item(String name) {
+  public FullItem(String name) {
     this.realName = name;
   }
 

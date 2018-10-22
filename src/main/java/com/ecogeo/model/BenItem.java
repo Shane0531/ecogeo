@@ -3,15 +3,22 @@ package com.ecogeo.model;
 import lombok.Data;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 /**
- * 관속식물
+ * 저서동물
  */
 
 @Data
 @Entity
-public class PlantItem {
+public class BenItem {
+
+  @Id
+  @GeneratedValue(strategy = GenerationType.AUTO)
+  protected Integer idx;
+
   protected String realName;
 
   //계
@@ -38,7 +45,6 @@ public class PlantItem {
   protected String familyEnName;
 
   //학명
-  @Id
   protected String scientificName;
 
   //생활형
@@ -65,11 +71,11 @@ public class PlantItem {
   //구계종
   protected String propGugyejong;
 
-  public PlantItem() {
+  public BenItem() {
 
   }
 
-  public PlantItem(String name) {
+  public BenItem(String name) {
     this.realName = name;
   }
 
@@ -84,5 +90,4 @@ public class PlantItem {
     if(!propRare.isEmpty()) etc += propRare;
     return etc;
   }
-
 }
