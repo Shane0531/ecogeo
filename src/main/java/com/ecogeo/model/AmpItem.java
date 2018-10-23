@@ -22,4 +22,14 @@ public class AmpItem extends Item {
     this.realName = name;
   }
 
+  @Override
+  public String getETC() {
+    String etc = "";
+    if(propCrisis != null && !propCrisis.isEmpty()) etc += propCrisis;
+    if((propCrisis != null && !propCrisis.isEmpty()) && (propOrigin != null && !propOrigin.isEmpty())) etc += ", ";
+    if(propOrigin != null && !propOrigin.isEmpty()) etc += "고";
+    if((propEcosystem != null && !propEcosystem.isEmpty())) etc += "교";
+    return etc;
+  }
+
 }

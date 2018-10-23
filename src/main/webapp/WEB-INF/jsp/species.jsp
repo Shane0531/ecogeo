@@ -15,10 +15,21 @@
 
         var filter = f.filter.value;
         if(filter === "관속식물")
-          url = "species_result_five.ajax"
+          url = "species_result_plant.ajax"
+        else if(filter === "저서동물")
+          url = "species_result_ben.ajax"
+        else if(filter === "포유류")
+          url = "species_result_mam.ajax"
+        else if(filter === "조류")
+          url = "species_result_bird.ajax"
+        else if(filter === "양서강")
+          url = "species_result_amp.ajax"
+        else if(filter === "파충강")
+          url = "species_result_rep.ajax"
+        else if(filter === "곤충")
+          url = "species_result_insect.ajax"
         else
-          url = "species_result_three.ajax"
-
+          url = "species_result_fish.ajax"
 
         var data = $(f).serialize();
         l_ajax("post", "html", url, data, function (html) {
@@ -77,6 +88,7 @@
           <select name="filter" class="form-control" style="width: 150px; display: inline-block; height: 34px;">
             <option>관속식물</option>
             <option>포유류</option>
+            <option>조류</option>
             <option>양서강</option>
             <option>파충강</option>
             <option>곤충</option>

@@ -22,4 +22,14 @@ public class RepItem extends Item {
     this.realName = name;
   }
 
+  @Override
+  public String getETC() {
+    String etc = "";
+    if(propCrisis != null && !propCrisis.isEmpty()) etc += propCrisis;
+    if((propCrisis != null && !propCrisis.isEmpty()) && (propMonument != null && !propMonument.isEmpty())) etc += ", ";
+    if(propMonument != null && !propMonument.isEmpty()) etc += "천";
+    if((propEcosystem != null && !propEcosystem.isEmpty())) etc += "교";
+    return etc;
+  }
+
 }

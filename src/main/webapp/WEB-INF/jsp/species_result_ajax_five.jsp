@@ -25,7 +25,7 @@
                 <th class="text-center" width="100px">${item}</th>
             </c:forEach>
             <th class="text-center" width="100px">전체</th>
-            <th class="text-center" width="50px">생활형</th>
+            <c:if test="${filter != '저서동물'}"><th class="text-center" width="50px">생활형</th></c:if>
             <th class="text-center" width="80px">비고</th>
         </tr>
         </thead>
@@ -39,7 +39,7 @@
                 </c:forEach>
                 <td></td>
                 <td></td>
-                <td></td>
+                <c:if test="${filter != '저서동물'}"><td></td></c:if>
             </tr>
             <c:forEach var="gang" items="${result.get(moon).keySet()}" varStatus="f">
                 <tr class="gang">
@@ -50,7 +50,7 @@
                     </c:forEach>
                     <td></td>
                     <td></td>
-                    <td></td>
+                    <c:if test="${filter != '저서동물'}"><td></td></c:if>
                 </tr>
                 <c:forEach var="family" items="${result.get(moon).get(gang).keySet()}" varStatus="f">
                     <tr class="family">
@@ -61,7 +61,7 @@
                         </c:forEach>
                         <td></td>
                         <td></td>
-                        <td></td>
+                        <c:if test="${filter != '저서동물'}"><td></td></c:if>
                     </tr>
                     <c:forEach var="order" items="${result.get(moon).get(gang).get(family).keySet()}" varStatus="o">
                         <tr class="order">
@@ -72,7 +72,7 @@
                             </c:forEach>
                             <td></td>
                             <td></td>
-                            <td></td>
+                            <c:if test="${filter != '저서동물'}"><td></td></c:if>
                         </tr>
                         <c:forEach var="item" items="${result.get(moon).get(gang).get(family).get(order)}"
                                    varStatus="i">
@@ -93,7 +93,7 @@
                                     <td class="text-center"><c:if test="${item.getGroup().contains(name)}">O</c:if></td>
                                 </c:forEach>
                                 <td class="text-center">O</td>
-                                <td class="text-center">${item.lifeType}</td>
+                                <c:if test="${filter != '저서동물'}"><td class="text-center">${item.lifeType}</td></c:if>
                                 <td class="text-center">${item.getETC()}</td>
                             </tr>
                         </c:forEach>

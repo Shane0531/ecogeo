@@ -5,5 +5,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface PlantItemRepo extends JpaRepository<PlantItem, String> {
 
-  PlantItem findOneBySpeciesAndRealName(String species,String RealName);
+  PlantItem findOneByRealName(String RealName);
 }

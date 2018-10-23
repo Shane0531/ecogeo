@@ -25,7 +25,7 @@
         <th class="text-center" width="100px">${item}</th>
       </c:forEach>
       <th class="text-center" width="100px">전체</th>
-      <%--<th class="text-center" width="50px">생활형</th>--%>
+      <c:if test="${filter == '조류'}"><th class="text-center" width="50px">도래현황</th></c:if>
       <th class="text-center" width="80px">비고</th>
     </tr>
     </thead>
@@ -39,6 +39,7 @@
           </c:forEach>
           <td></td>
           <td></td>
+          <c:if test="${filter == '조류'}"><td></td></c:if>
         </tr>
         <c:forEach var="order" items="${result.get(family).keySet()}" varStatus="o">
           <tr class="order">
@@ -49,6 +50,7 @@
             </c:forEach>
             <td></td>
             <td></td>
+            <c:if test="${filter == '조류'}"><td></td></c:if>
           </tr>
           <c:forEach var="item" items="${result.get(family).get(order)}" varStatus="i">
             <tr class="f-o-item">
@@ -67,8 +69,15 @@
                 <td class="text-center"><c:if test="${item.getGroup().contains(name)}">O</c:if></td>
               </c:forEach>
               <td class="text-center">O</td>
-              <%--<td class="text-center">${item.lifeType}</td>--%>
-              <td class="text-center">${item.getETC()}</td>
+              <c:if test="${filter == '조류'}"><td class="text-center">${item.currentStatus}</td></c:if>
+              <td class="text-center">
+                <c:if test="${filter =='담수어류'}">
+                  <c:forEach var="etc" items="${item.getETCList()}" varStatus="ie">
+                    ${etc} <c:if test="${ ie.index+1 != item.getETCList().size()}">,</c:if>
+                  </c:forEach>
+                </c:if>
+                <c:if test="${filter !='담수어류'}">${item.getETC()}</c:if>
+              </td>
             </tr>
           </c:forEach>
         </c:forEach>
