@@ -44,6 +44,61 @@ public class BenController {
       noneCount++;
     }
 
+    //차트에 그릴 카운트들
+    Map<String, Integer> myeljongCount = new HashMap<>();
+    Map<String, Integer> moonCount = new HashMap<>();
+    Map<String, Integer> gangCount = new HashMap<>();
+    Map<String, Integer> mokCount = new HashMap<>();
+    Map<String, Integer> guaCount = new HashMap<>();
+    myeljongCount.put("기타",0);
+    myeljongCount.put("total",0);
+    moonCount.put("total",0);
+    gangCount.put("total",0);
+    mokCount.put("total",0);
+    guaCount.put("total",0);
+
+    for(BenItem s : have) {
+      if(guaCount.containsKey(s.getFamilyName())) {
+        guaCount.put(s.getFamilyName(),guaCount.get(s.getFamilyName()) + 1);
+      } else {
+        guaCount.put(s.getFamilyName(),1);
+      }
+      guaCount.put("total",guaCount.get("total")+1);
+
+      if(mokCount.containsKey(s.getOrderName())) {
+        mokCount.put(s.getOrderName(),mokCount.get(s.getOrderName()) + 1);
+      } else {
+        mokCount.put(s.getOrderName(),1);
+      }
+      mokCount.put("total",mokCount.get("total")+1);
+
+      if(gangCount.containsKey(s.getClassName())) {
+        gangCount.put(s.getClassName(),gangCount.get(s.getClassName()) + 1);
+      } else {
+        gangCount.put(s.getClassName(),1);
+      }
+      gangCount.put("total",gangCount.get("total")+1);
+
+      if(moonCount.containsKey(s.getPhylumName())) {
+        moonCount.put(s.getPhylumName(),moonCount.get(s.getPhylumName()) + 1);
+      } else {
+        moonCount.put(s.getPhylumName(),1);
+      }
+      moonCount.put("total",moonCount.get("total")+1);
+
+      if(!s.getPropCrisis().isEmpty() && s.getPropCrisis() != null) {
+        if(myeljongCount.containsKey(s.getPropCrisis())) {
+          myeljongCount.put(s.getPropCrisis(),myeljongCount.get(s.getPropCrisis()) + 1);
+        } else {
+          myeljongCount.put(s.getPropCrisis(),1);
+        }
+      } else {
+        myeljongCount.put("기타",myeljongCount.get("기타")+1);
+      }
+      myeljongCount.put("total",myeljongCount.get("total")+1);
+
+    }
+
     Map<String,List<BenItem>> phylum = new HashMap<>();
 
     //먼저 문으로 분류
@@ -166,6 +221,11 @@ public class BenController {
     model.addAttribute("result", result);
     model.addAttribute("totalMap", totalMap);
     model.addAttribute("filter",filter);
+    model.addAttribute("myeljongCount",myeljongCount);
+    model.addAttribute("moonCount",moonCount);
+    model.addAttribute("gangCount",gangCount);
+    model.addAttribute("mokCount",mokCount);
+    model.addAttribute("guaCount",guaCount);
     return "/species_result_ajax_five";
   }
 

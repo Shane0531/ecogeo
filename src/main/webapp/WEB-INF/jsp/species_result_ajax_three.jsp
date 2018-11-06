@@ -7,7 +7,97 @@
   <script type="text/javascript">
 
     $(function () {
-      $('#Modal').modal('show')
+      // $('#Modal').modal('show')
+      $("#graph").click(function (e) {
+        $('#graphModal').modal('show')
+      });
+      $("#filter2").change(function() {
+        var filter = $( "#filter2" ).val();
+        var data = [];
+
+        if(filter === '멸종위기') {
+          <c:forEach var="m" items="${myeljongCount.keySet()}" varStatus="f">
+          <c:if test="${m != 'total'}">
+          var num = ${ myeljongCount.get(m) / myeljongCount.get("total") * 100}
+          var d = {y: parseFloat(num).toFixed(1), label: '${m}'}
+          data.push(d)
+          </c:if>
+          </c:forEach>
+        } else if(filter === '목') {
+          <c:forEach var="m" items="${mokCount.keySet()}" varStatus="f">
+          <c:if test="${m != 'total'}">
+          var num = ${ mokCount.get(m) / mokCount.get("total") * 100}
+          var d = {y: parseFloat(num).toFixed(1), label: '${m}'}
+          data.push(d)
+          </c:if>
+          </c:forEach>
+        } else if(filter === '과') {
+          <c:forEach var="m" items="${guaCount.keySet()}" varStatus="f">
+          <c:if test="${m != 'total'}">
+          var num = ${ guaCount.get(m) / guaCount.get("total") * 100}
+          var d = {y: parseFloat(num).toFixed(1), label: '${m}'}
+          data.push(d)
+          </c:if>
+          </c:forEach>
+        } else {
+          <c:forEach var="m" items="${chenyeonCount.keySet()}" varStatus="f">
+          <c:if test="${m != 'total'}">
+          var num = ${ chenyeonCount.get(m) / chenyeonCount.get("total") * 100}
+          var d = {y: parseFloat(num).toFixed(1), label: '${m}'}
+          data.push(d)
+          </c:if>
+          </c:forEach>
+        }
+
+        var chart2 = new CanvasJS.Chart("chartContainer", {
+          theme: "light2", // "light1", "light2", "dark1", "dark2"
+          exportEnabled: true,
+          animationEnabled: true,
+          title: {
+            text: filter
+          },
+          data: [{
+            type: "pie",
+            startAngle: -90,
+            toolTipContent: "<b>{label}</b>: {y}%",
+            showInLegend: "true",
+            legendText: "{label}",
+            indexLabelFontSize: 16,
+            indexLabel: "{label} - {y}%",
+            dataPoints: data
+          }]
+        });
+        chart2.render();
+      });
+    });
+    var data = [];
+    <c:forEach var="m" items="${chenyeonCount.keySet()}" varStatus="f">
+    <c:if test="${m != 'total'}">
+    var num = ${ chenyeonCount.get(m) / chenyeonCount.get("total") * 100}
+    var d = {y: parseFloat(num).toFixed(1), label: '${m}'}
+    data.push(d)
+    </c:if>
+    </c:forEach>
+    var chart = new CanvasJS.Chart("chartContainer", {
+      theme: "light2", // "light1", "light2", "dark1", "dark2"
+      exportEnabled: true,
+      animationEnabled: true,
+      title: {
+        text: "천연기념물"
+      },
+      data: [{
+        type: "pie",
+        startAngle: -90,
+        toolTipContent: "<b>{label}</b>: {y}%",
+        showInLegend: "true",
+        legendText: "{label}",
+        indexLabelFontSize: 16,
+        indexLabel: "{label} - {y}%",
+        dataPoints: data
+      }]
+    });
+    $('#graphModal').on('shown.bs.modal', function () {
+      chart.render();
     });
 
 
@@ -16,6 +106,10 @@
 <body>
 
 <div class="table-container">
+  <div style="margin-bottom: 20px">
+    <button class="btn btn-default" id="graph" style="font-weight: 400 !important;">그래프만들기</button>
+    <button class="btn btn-primary" id="save" style="font-weight: 400 !important; margin-left: 20px">저장하기</button>
+  </div>
   <table class="table table-bordered">
     <thead>
     <tr>
@@ -103,6 +197,34 @@
       <div class="modal-body">
         <h6>검색안된 종이 ${noneCount}개 있습니다.</h6>
         <textarea class='form-control' rows='10'>${none}</textarea>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="modal fade bs-example-modal-lg" id="graphModal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        그래프
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div>
+          분류 조건
+          <select id="filter2" class="form-control" style="width: 150px; display: inline-block; height: 34px;">
+            <option>천연기념물</option>
+            <option>멸종위기</option>
+            <option>목</option>
+            <option>과</option>
+          </select>
+        </div>
+        <div>
+          <div id="chartContainer" style="height: 450px; width: 100%;"></div>
+        </div>
       </div>
     </div>
   </div>

@@ -31,6 +31,7 @@
   <script src="vendor/jquery.cookie/jquery.cookie.js"> </script>
   <script src="vendor/jquery-validation/jquery.validate.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-sweetalert/1.0.1/sweetalert.min.js"></script>
+  <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
 
   <script src="js/common.js"></script>
   <sitemesh:write property='head'/>

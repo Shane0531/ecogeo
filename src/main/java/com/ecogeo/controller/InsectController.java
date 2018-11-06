@@ -45,6 +45,58 @@ public class InsectController {
       noneCount++;
     }
 
+
+    //차트에 그릴 카운트들
+    Map<String, Integer> chenyeonCount = new HashMap<>();
+    Map<String, Integer> myeljongCount = new HashMap<>();
+    Map<String, Integer> mokCount = new HashMap<>();
+    Map<String, Integer> guaCount = new HashMap<>();
+    myeljongCount.put("기타",0);
+    myeljongCount.put("total",0);
+    chenyeonCount.put("기타",0);
+    chenyeonCount.put("total",0);
+    mokCount.put("total",0);
+    guaCount.put("total",0);
+
+    for(InsectItem s : have) {
+      if(guaCount.containsKey(s.getFamilyName())) {
+        guaCount.put(s.getFamilyName(),guaCount.get(s.getFamilyName()) + 1);
+      } else {
+        guaCount.put(s.getFamilyName(),1);
+      }
+      guaCount.put("total",guaCount.get("total")+1);
+
+      if(mokCount.containsKey(s.getOrderName())) {
+        mokCount.put(s.getOrderName(),mokCount.get(s.getOrderName()) + 1);
+      } else {
+        mokCount.put(s.getOrderName(),1);
+      }
+      mokCount.put("total",mokCount.get("total")+1);
+
+      if(!s.getPropCrisis().isEmpty() && s.getPropCrisis() != null) {
+        if(myeljongCount.containsKey(s.getPropCrisis())) {
+          myeljongCount.put(s.getPropCrisis(),myeljongCount.get(s.getPropCrisis()) + 1);
+        } else {
+          myeljongCount.put(s.getPropCrisis(),1);
+        }
+      } else {
+        myeljongCount.put("기타",myeljongCount.get("기타")+1);
+      }
+      myeljongCount.put("total",myeljongCount.get("total")+1);
+
+      if(!s.getPropMonument().isEmpty() && s.getPropMonument() != null) {
+        if(chenyeonCount.containsKey(s.getPropMonument())) {
+          chenyeonCount.put(s.getPropMonument(),chenyeonCount.get(s.getPropMonument()) + 1);
+        } else {
+          chenyeonCount.put(s.getPropMonument(),1);
+        }
+      } else {
+        chenyeonCount.put("기타",chenyeonCount.get("기타")+1);
+      }
+      chenyeonCount.put("total",chenyeonCount.get("total")+1);
+
+    }
+
     Map<MamController.UpperItem,Map<MamController.UpperItem,List<ItemDTO>>> result = new HashMap<>();
 
     Map<String,List<InsectItem>> order = new HashMap<>();
@@ -98,16 +150,16 @@ public class InsectController {
 
 
 
-
-
-
-
     model.addAttribute("group_name", group_name);
     model.addAttribute("none", none);
     model.addAttribute("noneCount", noneCount);
     model.addAttribute("result", result);
     model.addAttribute("totalMap", totalMap);
     model.addAttribute("filter",filter);
+    model.addAttribute("myeljongCount",myeljongCount);
+    model.addAttribute("chenyeonCount",chenyeonCount);
+    model.addAttribute("mokCount",mokCount);
+    model.addAttribute("guaCount",guaCount);
     return "/species_result_ajax_three";
   }
 
