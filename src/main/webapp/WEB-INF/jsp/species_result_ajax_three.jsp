@@ -58,11 +58,11 @@
           },
           data: [{
             type: "pie",
-            startAngle: -90,
+            startAngle: 0,
             toolTipContent: "<b>{label}</b>: {y}%",
             showInLegend: "true",
             legendText: "{label}",
-            indexLabelFontSize: 16,
+            indexLabelFontSize: 14,
             indexLabel: "{label} - {y}%",
             dataPoints: data
           }]
@@ -87,11 +87,11 @@
       },
       data: [{
         type: "pie",
-        startAngle: -90,
+        startAngle: 0,
         toolTipContent: "<b>{label}</b>: {y}%",
         showInLegend: "true",
         legendText: "{label}",
-        indexLabelFontSize: 16,
+        indexLabelFontSize: 14,
         indexLabel: "{label} - {y}%",
         dataPoints: data
       }]
@@ -100,6 +100,37 @@
       chart.render();
     });
 
+    function exportTableToExcel(tableID, filename){
+      var downloadLink;
+      var dataType = 'application/vnd.ms-excel';
+      var tableSelect = document.getElementById(tableID);
+      var tableHTML = tableSelect.outerHTML.replace(/ /g, '%20');
+      var date = new Date();
+      var dateTime = '_'+date.getDate()+'_'+date.getHours()+'_'+date.getMinutes()+'_'+date.getSeconds()
+      // Specify file name
+      filename = filename?filename+dateTime+'.xls':'excel_data.xls';
+
+      // Create download link element
+      downloadLink = document.createElement("a");
+
+      document.body.appendChild(downloadLink);
+
+      if(navigator.msSaveOrOpenBlob){
+        var blob = new Blob(['\ufeff', tableHTML], {
+          type: dataType
+        });
+        navigator.msSaveOrOpenBlob( blob, filename);
+      }else{
+        // Create a link to the file
+        downloadLink.href = 'data:' + dataType + ', ' + tableHTML;
+
+        // Setting the file name
+        downloadLink.download = filename;
+
+        //triggering the function
+        downloadLink.click();
+      }
+    }
 
   </script>
 </head>
@@ -108,9 +139,9 @@
 <div class="table-container">
   <div style="margin-bottom: 20px">
     <button class="btn btn-default" id="graph" style="font-weight: 400 !important;">그래프만들기</button>
-    <button class="btn btn-primary" id="save" style="font-weight: 400 !important; margin-left: 20px">저장하기</button>
+    <button class="btn btn-primary" id="save" style="font-weight: 400 !important; margin-left: 20px" onclick="exportTableToExcel('headerTable', 'ecogeo-jong')">저장하기</button>
   </div>
-  <table class="table table-bordered">
+  <table class="table table-bordered" id="headerTable">
     <thead>
     <tr>
       <th class="text-center" width="200px">학명<br>(Scientific name)</th>
@@ -182,7 +213,7 @@
           <td class="text-center">${totalMap.get(name).getTotal()}</td>
         </c:forEach>
         <td class="text-center">${totalMap.get('totalKSH').getTotal()}</td>
-        <td class="text-center" colspan="10"></td>
+        <td class="text-center" colspan="3"></td>
       </tr>
     </tbody>
   </table>
@@ -196,7 +227,7 @@
       </div>
       <div class="modal-body">
         <h6>검색안된 종이 ${noneCount}개 있습니다.</h6>
-        <textarea class='form-control' rows='10'>${none}</textarea>
+        <textarea class='form-control' rows='3'>${none}</textarea>
       </div>
     </div>
   </div>
@@ -229,6 +260,5 @@
     </div>
   </div>
 </div>
-
 </body>
 </html>
