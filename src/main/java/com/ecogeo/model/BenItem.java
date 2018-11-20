@@ -81,7 +81,7 @@ public class BenItem {
 
   public String getETC() {
     String etc = "";
-    if(!propCrisis.isEmpty()) etc += "멸"+propCrisis;
+    if(!propCrisis.isEmpty()) etc += propCrisis;
     if(!propCrisis.isEmpty() && (!propGugyejong.isEmpty()|| !propRare.isEmpty())) etc += ", ";
     if(!propGugyejong.isEmpty()) etc += propGugyejong;
     if((!propGugyejong.isEmpty() || !propCrisis.isEmpty()) && !propSpecialty.isEmpty()) etc += ", ";

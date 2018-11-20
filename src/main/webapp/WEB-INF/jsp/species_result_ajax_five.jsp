@@ -142,6 +142,14 @@
 
 
     </script>
+    <style>
+        .scName a {
+            color: black;
+        }
+        .scName a:hover {
+            text-decoration: none;
+        }
+    </style>
 </head>
 <body>
 
@@ -211,7 +219,7 @@
                         <c:forEach var="item" items="${result.get(moon).get(gang).get(family).get(order)}"
                                    varStatus="i">
                             <tr class="f-o-item">
-                                <td class="scName">&nbsp;&nbsp;&nbsp;
+                                <td class="scName"><a href="/manage?filter=${filter}&name=${item.getScientificName()}" target="_blank">&nbsp;&nbsp;&nbsp;
                                     <c:forEach var="sc" items="${item.getScientificNameArray()}" varStatus="idx">
                 <span
                         <c:if test="${idx.index == 0 || idx.index == 1 ||
@@ -221,6 +229,7 @@
                         ${sc}
                 </span>
                                     </c:forEach>
+                                </a>
                                 </td>
                                 <td>&nbsp;&nbsp;&nbsp;&nbsp;${item.realName}</td>
                                 <c:forEach var="name" items="${group_name}" varStatus="i">

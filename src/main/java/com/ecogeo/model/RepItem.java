@@ -32,11 +32,4 @@ public class RepItem extends Item {
     return etc;
   }
 
-  public String getCrisisValue() {
-    if(!propCrisis.isEmpty()) {
-      return propCrisis.substring(1).trim();
-    } else
-      return "";
-  }
-
 }

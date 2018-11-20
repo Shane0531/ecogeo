@@ -14,7 +14,7 @@
   <!-- Sidebar Navidation Menus-->
   <span class="heading">Main</span>
   <ul class="list-unstyled">
-    <li <c:if test="${location == 'species'}">class="active"</c:if>><a href="/species">종목록생성기</a></li>
+    <li <c:if test="${location == 'species' || location == 'manage'}">class="active"</c:if>><a href="/species">종목록생성기</a></li>
     <%--<li><a href="index.html"> <i class="icon-home"></i>Home </a></li>--%>
     <%--<li <c:if test="${location == 'chart'}">class="active"</c:if>><a href="/chart">Charts</a></li>--%>
     <%--<li <c:if test="${location == 'form'}">class="active"</c:if>><a href="/form">Forms</a></li>--%>

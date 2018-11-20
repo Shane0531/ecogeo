@@ -6,4 +6,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 public interface BirdItemRepo extends JpaRepository<BirdItem, String> {
 
   BirdItem findOneByRealName(String RealName);
+
+  BirdItem findOneByScientificName(String ScientificName);
 }

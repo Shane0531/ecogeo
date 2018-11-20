@@ -6,4 +6,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 public interface MamItemRepo extends JpaRepository<MamItem, String> {
 
   MamItem findOneByRealName(String RealName);
+
+  MamItem findOneByScientificName(String ScientificName);
 }

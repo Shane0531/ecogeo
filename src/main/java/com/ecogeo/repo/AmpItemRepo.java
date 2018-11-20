@@ -6,4 +6,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 public interface AmpItemRepo extends JpaRepository<AmpItem, String> {
 
   AmpItem findOneByRealName(String RealName);
+
+  AmpItem findOneByScientificName(String ScientificName);
 }

@@ -24,11 +24,4 @@ public class MamItem extends Item {
     this.realName = name;
   }
 
-  public String getCrisisValue() {
-    if(!propCrisis.isEmpty()) {
-      return propCrisis.substring(1).trim();
-    } else
-      return "";
-  }
-
 }

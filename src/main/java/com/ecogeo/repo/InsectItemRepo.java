@@ -6,4 +6,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 public interface InsectItemRepo extends JpaRepository<InsectItem, String> {
 
   InsectItem findOneByRealName(String RealName);
+
+  InsectItem findOneByScientificName(String ScientificName);
 }

@@ -26,7 +26,7 @@ public class FishItem extends FullItem {
 
   public List<String> getETCList() {
     List<String> etc = new ArrayList<>();
-    if(!propCrisis.isEmpty()) etc.add("멸"+propCrisis);
+    if(!propCrisis.isEmpty()) etc.add(propCrisis);
     if(!propMonument.isEmpty()) etc.add("천");
     if(!propOrigin.isEmpty()) etc.add("고");
     if(!propAlien.isEmpty()) etc.add("외");

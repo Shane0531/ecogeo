@@ -6,4 +6,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 public interface PlantItemRepo extends JpaRepository<PlantItem, String> {
 
   PlantItem findOneByRealName(String RealName);
+
+  PlantItem findOneByScientificName(String ScientificName);
 }

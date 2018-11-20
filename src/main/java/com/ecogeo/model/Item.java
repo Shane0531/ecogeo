@@ -33,7 +33,7 @@ public class Item {
   //귀화종
   protected String propNatural;
 
-  //생태계교란식물
+  //생태계교란생물
   protected String propEcosystem;
 
   //멸종위기

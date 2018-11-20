@@ -6,4 +6,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 public interface BenItemRepo extends JpaRepository<BenItem, String> {
 
   BenItem findOneByRealName(String RealName);
+
+  BenItem findOneByScientificName(String ScientificName);
 }

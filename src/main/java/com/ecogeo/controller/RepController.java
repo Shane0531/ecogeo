@@ -73,10 +73,10 @@ public class RepController {
       mokCount.put("total",mokCount.get("total")+1);
 
       if(!s.getPropCrisis().isEmpty() && s.getPropCrisis() != null) {
-        if(myeljongCount.containsKey(s.getCrisisValue())) {
-          myeljongCount.put(s.getCrisisValue(),myeljongCount.get(s.getCrisisValue()) + 1);
+        if(myeljongCount.containsKey(s.getPropCrisis())) {
+          myeljongCount.put(s.getPropCrisis(),myeljongCount.get(s.getPropCrisis()) + 1);
         } else {
-          myeljongCount.put(s.getCrisisValue(),1);
+          myeljongCount.put(s.getPropCrisis(),1);
         }
       } else {
         myeljongCount.put("기타",myeljongCount.get("기타")+1);
