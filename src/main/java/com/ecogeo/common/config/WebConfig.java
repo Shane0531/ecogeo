@@ -13,7 +13,7 @@ public class WebConfig extends WebMvcConfigurerAdapter {
   public void addInterceptors(InterceptorRegistry registry) {
     WebContentInterceptor WebContentInterceptor = new WebContentInterceptor();
     WebContentInterceptor.setCacheSeconds(0);
-//    registry.addInterceptor(new LoginCheckInterceptor()).addPathPatterns("/**/*").excludePathPatterns("/login");
+    registry.addInterceptor(new LoginCheckInterceptor()).addPathPatterns("/**/*").excludePathPatterns("/login");
 
   }
 
