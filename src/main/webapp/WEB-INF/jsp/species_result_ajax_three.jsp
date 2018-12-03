@@ -149,7 +149,7 @@
     <button class="btn btn-default" id="graph" style="font-weight: 400 !important;">그래프만들기</button>
     <button class="btn btn-primary" id="save" style="font-weight: 400 !important; margin-left: 20px" onclick="exportTableToExcel('headerTable', 'ecogeo-jong')">저장하기</button>
   </div>
-  <table class="table table-bordered" id="headerTable">
+  <table class="table table-bordered">
     <thead>
     <tr>
       <th class="text-center" width="200px">학명<br>(Scientific name)</th>
@@ -269,5 +269,82 @@
     </div>
   </div>
 </div>
+
+<table class="table table-bordered" id="headerTable" style="display: none">
+  <thead>
+  <tr>
+    <th class="text-center" width="200px">학명<br>(Scientific name)</th>
+    <th class="text-center" width="150px">국명<br>(common name)</th>
+    <c:forEach var="item" items="${group_name}" varStatus="i">
+      <th class="text-center" width="100px">${item}</th>
+    </c:forEach>
+    <th class="text-center" width="100px">전체</th>
+    <c:if test="${filter == '조류'}"><th class="text-center" width="50px">도래현황</th></c:if>
+    <th class="text-center" width="80px">비고</th>
+  </tr>
+  </thead>
+  <tbody>
+  <c:forEach var="family" items="${result.keySet()}" varStatus="f">
+    <tr class="family">
+      <td>Order ${family.enName}</td>
+      <td>${family.korName}</td>
+      <c:forEach var="item" items="${group_name}" varStatus="i">
+        <td></td>
+      </c:forEach>
+      <td></td>
+      <td></td>
+      <c:if test="${filter == '조류'}"><td></td></c:if>
+    </tr>
+    <c:forEach var="order" items="${result.get(family).keySet()}" varStatus="o">
+      <tr class="order">
+        <td>Family ${order.enName}</td>
+        <td>${order.korName}</td>
+        <c:forEach var="item" items="${group_name}" varStatus="i">
+          <td></td>
+        </c:forEach>
+        <td></td>
+        <td></td>
+        <c:if test="${filter == '조류'}"><td></td></c:if>
+      </tr>
+      <c:forEach var="item" items="${result.get(family).get(order)}" varStatus="i">
+        <tr class="f-o-item">
+          <td class="scName">
+            <c:forEach var="sc" items="${item.getScientificNameArray()}" varStatus="idx">
+                <span  <c:if test="${idx.index == 0 || idx.index == 1 ||
+                 (idx.index > 2 && (item.getScientificNameArray()[idx.index - 1] == 'var.') ||
+                 item.getScientificNameArray()[idx.index - 1] == 'for.' ||
+                 item.getScientificNameArray()[idx.index - 1] == 'subsp.')}">class="font-italic"</c:if>  >
+                    ${sc}
+                </span>
+            </c:forEach>
+          </td>
+          <td>${item.realName}</td>
+          <c:forEach var="name" items="${group_name}" varStatus="i">
+            <td class="text-center"><c:if test="${item.getGroup().contains(name)}">O</c:if></td>
+          </c:forEach>
+          <td class="text-center">O</td>
+          <c:if test="${filter == '조류'}"><td class="text-center">${item.currentStatus}</td></c:if>
+          <td class="text-center">
+            <c:if test="${filter =='담수어류'}">
+              <c:forEach var="etc" items="${item.getETCList()}" varStatus="ie">
+                ${etc} <c:if test="${ ie.index+1 != item.getETCList().size()}">,</c:if>
+              </c:forEach>
+            </c:if>
+            <c:if test="${filter !='담수어류'}">${item.getETC()}</c:if>
+          </td>
+        </tr>
+      </c:forEach>
+    </c:forEach>
+  </c:forEach>
+  <tr>
+    <td class="text-center" colspan="2">총 합</td>
+    <c:forEach var="name" items="${group_name}" varStatus="i">
+      <td class="text-center">${totalMap.get(name).getTotal()}</td>
+    </c:forEach>
+    <td class="text-center">${totalMap.get('totalKSH').getTotal()}</td>
+    <td class="text-center" colspan="3"></td>
+  </tr>
+  </tbody>
+</table>
 </body>
 </html>
