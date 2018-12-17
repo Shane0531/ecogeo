@@ -7,7 +7,7 @@
   <script type="text/javascript">
 
     $(function () {
-      // $('#Modal').modal('show')
+      $('#Modal').modal('show')
       $("#graph").click(function (e) {
         $('#graphModal').modal('show')
       });
