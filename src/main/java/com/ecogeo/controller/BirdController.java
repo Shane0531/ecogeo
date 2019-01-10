@@ -46,11 +46,14 @@ public class BirdController {
 
     //차트에 그릴 카운트들
     Map<String, Integer> chenyeonCount = new HashMap<>();
+    Map<String, Integer> doraeCount = new HashMap<>();
     Map<String, Integer> myeljongCount = new HashMap<>();
     Map<String, Integer> mokCount = new HashMap<>();
     Map<String, Integer> guaCount = new HashMap<>();
     myeljongCount.put("기타",0);
     myeljongCount.put("total",0);
+    doraeCount.put("기타",0);
+    doraeCount.put("total",0);
     chenyeonCount.put("기타",0);
     chenyeonCount.put("total",0);
     mokCount.put("total",0);
@@ -92,6 +95,17 @@ public class BirdController {
         chenyeonCount.put("기타",chenyeonCount.get("기타")+1);
       }
       chenyeonCount.put("total",chenyeonCount.get("total")+1);
+
+      if(!s.getCurrentStatus().isEmpty() && s.getCurrentStatus() != null) {
+        if(doraeCount.containsKey(s.getCurrentStatus())) {
+          doraeCount.put(s.getCurrentStatus(),doraeCount.get(s.getCurrentStatus()) + 1);
+        } else {
+          doraeCount.put(s.getCurrentStatus(),1);
+        }
+      } else {
+        doraeCount.put("기타",doraeCount.get("기타")+1);
+      }
+      doraeCount.put("total",doraeCount.get("total")+1);
 
     }
 
@@ -154,6 +168,7 @@ public class BirdController {
     model.addAttribute("filter",filter);
     model.addAttribute("myeljongCount",myeljongCount);
     model.addAttribute("chenyeonCount",chenyeonCount);
+    model.addAttribute("doraeCount",doraeCount);
     model.addAttribute("mokCount",mokCount);
     model.addAttribute("guaCount",guaCount);
     return "/species_result_ajax_three";

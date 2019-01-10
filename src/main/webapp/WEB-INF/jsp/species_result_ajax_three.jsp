@@ -23,6 +23,14 @@
           data.push(d)
           </c:if>
           </c:forEach>
+        } else if(filter === '도래현황') {
+          <c:forEach var="m" items="${doraeCount.keySet()}" varStatus="f">
+          <c:if test="${m != 'total'}">
+          var num = ${ doraeCount.get(m) / doraeCount.get("total") * 100}
+          var d = {y: parseFloat(num).toFixed(1), label: '${m}'}
+          data.push(d)
+          </c:if>
+          </c:forEach>
         } else if(filter === '목') {
           <c:forEach var="m" items="${mokCount.keySet()}" varStatus="f">
           <c:if test="${m != 'total'}">
@@ -258,6 +266,7 @@
           <select id="filter2" class="form-control" style="width: 150px; display: inline-block; height: 34px;">
             <option>천연기념물</option>
             <option>멸종위기</option>
+            <option>도래현황</option>
             <option>목</option>
             <option>과</option>
           </select>
