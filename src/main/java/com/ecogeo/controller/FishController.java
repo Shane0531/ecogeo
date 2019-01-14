@@ -10,10 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Controller
 public class FishController {
@@ -121,7 +118,8 @@ public class FishController {
 
         List<String> groupNames = new ArrayList<>();
         for(int v = 0; v < item_group.size(); v++) {
-          if(item_group.get(v).replace("\r\n","").equalsIgnoreCase(dto.getRealName()) && !group_name.get(v).equals("")) {
+          List<String> group = Arrays.asList(item_group.get(v).split("\r\n"));
+          if(group.contains(dto.getRealName()) && !group_name.get(v).equals("")) {
             groupNames.add(group_name.get(v));
             MamController.Total total = totalMap.get(group_name.get(v));
             total.getMok().add(dto.getOrderName());
