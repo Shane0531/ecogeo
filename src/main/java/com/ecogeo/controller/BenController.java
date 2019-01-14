@@ -176,7 +176,7 @@ public class BenController {
             dto.pack(i);
             List<String> groupNames = new ArrayList<>();
             for(int v = 0 ; v < item_group.size(); v++) {
-              if(item_group.get(v).contains(dto.getRealName()) && !group_name.get(v).equals("") ) {
+              if(item_group.get(v).replace("\r\n","").equalsIgnoreCase(dto.getRealName()) && !group_name.get(v).equals("") ) {
                 groupNames.add(group_name.get(v));
                 SpeciesController.Total total = totalMap.get(group_name.get(v));
                 total.getMok().add(dto.getOrderName());

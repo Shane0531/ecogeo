@@ -266,7 +266,7 @@
           <select id="filter2" class="form-control" style="width: 150px; display: inline-block; height: 34px;">
             <option>천연기념물</option>
             <option>멸종위기</option>
-            <option>도래현황</option>
+            <c:if test="${filter == '조류'}"><option>도래현황</option></c:if>
             <option>목</option>
             <option>과</option>
           </select>
