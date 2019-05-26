@@ -193,11 +193,18 @@ public class ItemService {
 
     for(String wo : wordSet) {
       if(!wo.equals("")) {
-        InsectItem i = insectItemRepo.findOneByRealName(wo);
-        if (i != null)
-          have.add(i);
-        else
+        List<InsectItem> list = insectItemRepo.findOneByRealName(wo);
+        if(list.size() > 0) {
+          if(list.size() > 1)
+            System.out.println("중복되는 이름이 있음 : " + list.get(0).getRealName());
+
+          for(int k = 0; k < list.size(); k++) {
+            InsectItem i = list.get(k);
+            have.add(i);
+          }
+        } else {
           none.add(new InsectItem(wo));
+        }
       }
     }
 

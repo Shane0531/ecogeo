@@ -21,7 +21,6 @@ public class LoginCheckInterceptor extends HandlerInterceptorAdapter {
   public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
     SessionContext sessionContext = (SessionContext)request.getSession().getAttribute("sessionContext");
     if( sessionContext == null || !sessionContext.getIsLogin() ) {
-      System.out.println("##### 로그인 페이지로 이동 #####");
       String szUri = request.getRequestURI();
       if( szUri.endsWith(".json") ) {
         response.setContentType("application/json;charset=UTF-8");
