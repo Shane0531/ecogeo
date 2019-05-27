@@ -90,4 +90,8 @@ public class BenItem {
     if(!propRare.isEmpty()) etc += propRare;
     return etc;
   }
+
+  public String getRealName() {
+    return this.realName.trim();
+  }
 }

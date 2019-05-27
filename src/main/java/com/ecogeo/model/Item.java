@@ -87,4 +87,9 @@ public class Item {
     if(propMonument != null && !propMonument.isEmpty()) etc += "천";
     return etc;
   }
+
+  public String getRealName() {
+    return this.realName.trim();
+  }
+
 }

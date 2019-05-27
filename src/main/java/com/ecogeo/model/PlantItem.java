@@ -85,4 +85,8 @@ public class PlantItem {
     return etc;
   }
 
+  public String getRealName() {
+    return this.realName.trim();
+  }
+
 }

@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.*;
+import java.util.stream.Collectors;
 
 @Controller
 public class SpeciesController {
@@ -30,6 +31,7 @@ public class SpeciesController {
   @PostMapping("/species_result_plant.ajax")
   public String resultPlant(@RequestParam String filter,@RequestParam List<String> group_name, @RequestParam List<String> item_group
           , Model model) {
+    item_group = item_group.stream().map(x -> x.replaceAll(" ", "")).collect(Collectors.toList());
     Map<String,Total> totalMap = new HashMap<>();
     for(String name : group_name) {
       if(!name.equals(""))

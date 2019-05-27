@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 @Controller
 public class MamController {
@@ -21,6 +22,7 @@ public class MamController {
   @PostMapping("/species_result_mam.ajax")
   public String resultThree(@RequestParam String filter, @RequestParam List<String> group_name, @RequestParam List<String> item_group
       , Model model) {
+    item_group = item_group.stream().map(x -> x.replaceAll(" ", "")).collect(Collectors.toList());
     Map<String,Total> totalMap = new HashMap<>();
     for(String name : group_name) {
       if(!name.equals(""))
